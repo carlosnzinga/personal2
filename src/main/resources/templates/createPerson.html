@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>User Informationen</title>
+  <link rel="stylesheet" href="css/createPersonInfo.css">
+
+
+
+</head>
+<body>
+<h1>User Informationen</h1>
+<!--Thymeleaf-Attributsyntax (th:), um den Wert der Variablen name aus dem Model der Seite einzufügen.
+  Das ${name} wird durch den Wert der name-Variable ersetzt, die im Model der Seite verfügbar sein sollte.-->
+<table>
+  <tr>
+    <th><strong>Name</strong></th>
+    <th><strong>Alter</strong></th>
+    <th><strong>Geschlecht</strong></th>
+    <th><strong>Adresse</strong></th>
+    <th><strong>Nationalität</strong></th>
+    <th><strong>Datum</strong></th>
+  </tr>
+
+  <tr th:each="personal: ${allPersonals}">
+    <td th:text="${personal.getName()}"></td>
+    <td th:text="${personal.getAge()}"></td>
+    <td th:text="${personal.getGender()}"></td>
+    <td th:text="${personal.getAddress()}"></td>
+    <td th:text="${personal.getNationality()}"></td>
+    <td th:text="${personal.getDate()}"></td>
+
+  </tr>
+
+  <br><br>
+  <form action="/userForm" method="get">
+
+
+    <button id="submit" type="submit">Zurück</button>
+    <!--<a href="/editorPage" class="edit-button">Editor</a>-->
+    <tr>
+      <td colspan="6">
+        <button href="delete" class="delete-button">Person löschen</button>
+
+      </td>
+    </tr>
+  </form>
+</table>
+<a href="login">Logout</a>
+</body>
+</html>
