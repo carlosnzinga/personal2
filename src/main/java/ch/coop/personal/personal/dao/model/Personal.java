@@ -14,7 +14,6 @@ public class Personal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", unique = true)
 	private int id;
 
 	@Column(name = "name")
