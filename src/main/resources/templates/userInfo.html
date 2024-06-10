@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>All Users</title>
+    <title>User Informationen</title>
+    <link rel="stylesheet" href="css/createPersonInfo.css">
 </head>
 <body>
-<h1>All Users</h1>
+<h1>User Informationen</h1>
 <table>
-    <thead>
     <tr>
-        <th>Username</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Address</th>
-        <th>Nationality</th>
-        <th>Actions</th>
+        <th><strong>Name</strong></th>
+        <th><strong>Alter</strong></th>
+        <th><strong>Geschlecht</strong></th>
+        <th><strong>Adresse</strong></th>
+        <th><strong>Nationalität</strong></th>
+        <th><strong>Datum</strong></th>
     </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${allUsers}">
-        <td th:text="${user.username}">Username</td>
-        <td th:text="${user.personalInfo.name}">Name</td>
-        <td th:text="${user.personalInfo.age}">Age</td>
-        <td th:text="${user.personalInfo.gender}">Gender</td>
-        <td th:text="${user.personalInfo.address}">Address</td>
-        <td th:text="${user.personalInfo.nationality}">Nationality</td>
-        <td>
-            <a th:href="@{/updateUser(id=${user.id})}">Edit</a> |
-            <a th:href="@{/deleteUser(id=${user.id})}">Delete</a>
-        </td>
+    <tr th:each="personal : ${allPersonals}">
+        <td th:text="${personal.name}"></td>
+        <td th:text="${personal.age}"></td>
+        <td th:text="${personal.gender}"></td>
+        <td th:text="${personal.address}"></td>
+        <td th:text="${personal.nationality}"></td>
+        <td th:text="${personal.date}"></td>
     </tr>
-    </tbody>
 </table>
+<br><br>
+<form action="/userForm" method="get">
+    <button id="submit" type="submit">Zurück</button>
+</form>
+<form th:action="@{/deletePerson}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <button type="submit" class="delete-button">Person löschen</button>
+</form>
+<a href="logout">Logout</a>
 </body>
 </html>
