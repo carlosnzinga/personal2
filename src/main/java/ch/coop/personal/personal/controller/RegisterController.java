@@ -26,10 +26,11 @@ public class RegisterController {
 	}
 
 	@PostMapping("/register")
-	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("name") String name) {
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(passwordEncoder.encode(password));
+		user.setName(name);
 		userRepository.save(user);
 		return "redirect:/login";
 	}

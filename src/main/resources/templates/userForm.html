@@ -2,41 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Create User</title>
+    <link rel="stylesheet" href="css/createPersonForm.css">
 </head>
 <body>
-<h1>Create User</h1>
-<form th:action="@{/createUser}" th:object="${user}" method="post">
+<h1>Create User Form</h1>
+<form th:action="@{/createPerson}" method="post">
     <div>
-        <label>Username:</label>
-        <input type="text" th:field="*{username}" />
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required>
     </div>
     <div>
-        <label>Password:</label>
-        <input type="password" th:field="*{password}" />
+        <label for="age">Age:</label>
+        <input type="number" id="age" th:field="*{age}" required>
     </div>
     <div>
-        <label>Name:</label>
-        <input type="text" th:field="*{personalInfo.name}" />
+        <label for="gender">Gender:</label>
+        <select id="gender" th:field="*{gender}" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
     </div>
     <div>
-        <label>Age:</label>
-        <input type="number" th:field="*{personalInfo.age}" />
+        <label for="address">Address:</label>
+        <input type="text" id="address" th:field="*{address}" required>
     </div>
     <div>
-        <label>Gender:</label>
-        <input type="text" th:field="*{personalInfo.gender}" />
+        <label for="nationality">Nationality:</label>
+        <input type="text" id="nationality" th:field="*{nationality}" required>
     </div>
     <div>
-        <label>Address:</label>
-        <input type="text" th:field="*{personalInfo.address}" />
+        <label for="date">Date:</label>
+        <input type="date" id="date" required>
     </div>
-    <div>
-        <label>Nationality:</label>
-        <input type="text" th:field="*{personalInfo.nationality}" />
-    </div>
-    <div>
-        <button type="submit">Create User</button>
-    </div>
+    <button type="submit">Submit</button>
 </form>
+<a href="logout">Logout</a>
 </body>
 </html>
