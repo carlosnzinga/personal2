@@ -8,6 +8,8 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String login() {
+
+		// TODO if session != null then return "home" else login
 		return "login";
 	}
 }
