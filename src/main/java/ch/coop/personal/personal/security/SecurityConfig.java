@@ -30,12 +30,12 @@ public class SecurityConfig {
 		http
 				.authorizeRequests(authorizeRequests ->
 						authorizeRequests
-								.requestMatchers("/user/register", "/login", "/user/create").permitAll()
+								.requestMatchers("/user/register", "/login", "/user/create","/css/**","/userForm","/userInfo").permitAll()
 								.anyRequest().authenticated()
 				)
 				.formLogin(formLogin ->
 						formLogin
-								.loginPage("/login")
+								.loginPage("/")
 								.defaultSuccessUrl("/personal/info", true)
 								.failureUrl("/login?error=true")
 								.permitAll()

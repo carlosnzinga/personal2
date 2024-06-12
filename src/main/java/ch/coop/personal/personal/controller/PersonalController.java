@@ -21,6 +21,12 @@ public class PersonalController {
     @Autowired
     private PersonalServiceImpl personalServiceImpl;
 
+    @RequestMapping("/info")
+    public String allPersonalList(Model model) {
+        model.addAttribute("allPersonals", personalServiceImpl.getPersonals());
+        return "userInfo";
+    }
+
     @RequestMapping("/form")
     public String newPersonal(@ModelAttribute Personal personal) {
         return "userForm";
@@ -29,12 +35,6 @@ public class PersonalController {
     @RequestMapping("/create")
     public String createPerson(@ModelAttribute Personal personal, Model model) {
         personalServiceImpl.insertPersonal(personal);
-        model.addAttribute("allPersonals", personalServiceImpl.getPersonals());
-        return "userInfo";
-    }
-
-    @RequestMapping("/info")
-    public String allPersonalList(Model model) {
         model.addAttribute("allPersonals", personalServiceImpl.getPersonals());
         return "userInfo";
     }

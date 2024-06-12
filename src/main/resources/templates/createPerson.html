@@ -1,50 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>User Informationen</title>
-  <link rel="stylesheet" href="css/createPersonInfo.css">
-
-
-
+  <title>Benutzer erstellen</title>
+  <link rel="stylesheet" href="css/createPersonForm.css">
 </head>
 <body>
-<h1>User Informationen</h1>
-<!--Thymeleaf-Attributsyntax (th:), um den Wert der Variablen name aus dem Model der Seite einzufügen.
-  Das ${name} wird durch den Wert der name-Variable ersetzt, die im Model der Seite verfügbar sein sollte.-->
-<table>
-  <tr>
-    <th><strong>Name</strong></th>
-    <th><strong>Alter</strong></th>
-    <th><strong>Geschlecht</strong></th>
-    <th><strong>Adresse</strong></th>
-    <th><strong>Nationalität</strong></th>
-    <th><strong>Datum</strong></th>
-  </tr>
-
-  <tr th:each="personal: ${allPersonals}">
-    <td th:text="${personal.getName()}"></td>
-    <td th:text="${personal.getAge()}"></td>
-    <td th:text="${personal.getGender()}"></td>
-    <td th:text="${personal.getAddress()}"></td>
-    <td th:text="${personal.getNationality()}"></td>
-    <td th:text="${personal.getDate()}"></td>
-
-  </tr>
-
-  <br><br>
-  <form action="/userForm" method="get">
-
-
-    <button id="submit" type="submit">Zurück</button>
-    <!--<a href="/editorPage" class="edit-button">Editor</a>-->
-    <tr>
-      <td colspan="6">
-        <button href="delete" class="delete-button">Person löschen</button>
-
-      </td>
-    </tr>
-  </form>
-</table>
-<a href="login">Logout</a>
+<h1>Benutzerformular erstellen</h1>
+<form th:action="@{/createPerson}" method="post">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required>
+  </div>
+  <div>
+    <label for="age">Alter:</label>
+    <input type="number" id="age" th:field="*{age}" required>
+  </div>
+  <div>
+    <label for="gender">Geschlecht:</label>
+    <select id="gender" th:field="*{gender}" required>
+      <option value="Male">Männlich</option>
+      <option value="Female">Weiblich</option>
+    </select>
+  </div>
+  <div>
+    <label for="address">Adresse:</label>
+    <input type="text" id="address" th:field="*{address}" required>
+  </div>
+  <div>
+    <label for="nationality">Nationalität:</label>
+    <input type="text" id="nationality" th:field="*{nationality}" required>
+  </div>
+  <div>
+    <label for="date">Datum:</label>
+    <input type="date" id="date" th:field="*{date}" required>
+  </div>
+  <button type="submit">Absenden</button>
+</form>
+<a th:href="@{/logout}">Abmelden</a>
 </body>
 </html>

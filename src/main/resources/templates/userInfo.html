@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>User Informationen</title>
+    <title>Benutzerinformationen</title>
     <link rel="stylesheet" href="css/createPersonInfo.css">
 </head>
 <body>
-<h1>User Informationen</h1>
+<h1>Benutzerinformationen</h1>
 <table>
     <tr>
         <th><strong>Name</strong></th>
@@ -22,16 +22,17 @@
         <td th:text="${personal.address}"></td>
         <td th:text="${personal.nationality}"></td>
         <td th:text="${personal.date}"></td>
+        <td>
+            <form th:action="@{/edit/{id}(id=${personal.id})}" method="post">
+                <button type="submit">Bearbeiten</button>
+            </form>
+            <form th:action="@{/delete/{id}(id=${personal.id})}" method="post">
+                <button type="submit">Löschen</button>
+            </form>
+        </td>
     </tr>
 </table>
-<br><br>
-<form action="/userForm" method="get">
-    <button id="submit" type="submit">Zurück</button>
-</form>
-<form th:action="@{/deletePerson}" method="post">
-    <input type="hidden" />
-    <button type="submit" class="delete-button">Person löschen</button>
-</form>
-<a href="logout">Logout</a>
+<a th:href="@{/createPersonForm}">Neuen Benutzer erstellen</a>
+<a th:href="@{/logout}">Abmelden</a>
 </body>
 </html>
