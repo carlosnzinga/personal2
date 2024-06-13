@@ -10,8 +10,8 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String login() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null && auth.isAuthenticated() && !(auth.getPrincipal() instanceof String && auth.getPrincipal().equals("anonymousUser"))) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null && authentication.isAuthenticated() && !authentication.getName().equals("anonymousUser")) {
 			return "redirect:/personal/info";
 		}
 		return "login";

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Benutzerinformationen</title>
-    <link rel="stylesheet" href="css/createPersonInfo.css">
+    <link rel="stylesheet" href="css/userInfo.css">
 </head>
 <body>
 <h1>Benutzerinformationen</h1>
 <table>
     <tr>
-        <th><strong>Name</strong></th>
-        <th><strong>Alter</strong></th>
-        <th><strong>Geschlecht</strong></th>
-        <th><strong>Adresse</strong></th>
-        <th><strong>Nationalität</strong></th>
-        <th><strong>Datum</strong></th>
+        <th>Name</th>
+        <th>Alter</th>
+        <th>Geschlecht</th>
+        <th>Adresse</th>
+        <th>Nationalität</th>
+        <th>Datum</th>
     </tr>
     <tr th:each="personal : ${allPersonals}">
         <td th:text="${personal.name}"></td>
@@ -22,17 +22,11 @@
         <td th:text="${personal.address}"></td>
         <td th:text="${personal.nationality}"></td>
         <td th:text="${personal.date}"></td>
-        <td>
-            <form th:action="@{/edit/{id}(id=${personal.id})}" method="post">
-                <button type="submit">Bearbeiten</button>
-            </form>
-            <form th:action="@{/delete/{id}(id=${personal.id})}" method="post">
-                <button type="submit">Löschen</button>
-            </form>
-        </td>
     </tr>
 </table>
-<a th:href="@{/createPersonForm}">Neuen Benutzer erstellen</a>
-<a th:href="@{/logout}">Abmelden</a>
+<form th:action="@{/personal/form}" method="get">
+    <button type="submit">Zurück</button>
+</form>
+<a href="logout">Logout</a>
 </body>
 </html>
