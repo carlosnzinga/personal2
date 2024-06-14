@@ -30,7 +30,7 @@ public class SecurityConfig {
 		http
 				.authorizeRequests(authorizeRequests ->
 						authorizeRequests
-								.requestMatchers("/user/register", "/login","/css/**","/personal/form", "/personal/create", "/personal/info", "/personal/update").permitAll()
+								.requestMatchers("/user/register", "/login","/css/**","/personal/form", "/personal/create", "/personal/info", "/personal/update", "/personal/delete").permitAll()
 								.anyRequest().authenticated()
 				)
 				.formLogin(formLogin ->
