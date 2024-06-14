@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Benutzerinformationen</title>
+    <title>Benutzerinformationen bearbeiten</title>
     <link rel="stylesheet" href="css/userInfo.css">
+    <meta charset="utf-8">
 </head>
 <body>
-<h1>Benutzerinformationen</h1>
+
+<h1>Benutzerinformationen bearbeiten</h1>
 <table>
+    <thead>
     <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Alter</th>
         <th>Geschlecht</th>
@@ -15,7 +19,10 @@
         <th>Nationalität</th>
         <th>Datum</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="personal : ${allPersonals}">
+        <td th:text="${personal.id}"></td>
         <td th:text="${personal.name}"></td>
         <td th:text="${personal.age}"></td>
         <td th:text="${personal.gender}"></td>
@@ -23,10 +30,7 @@
         <td th:text="${personal.nationality}"></td>
         <td th:text="${personal.date}"></td>
     </tr>
+    </tbody>
 </table>
-<form th:action="@{/personal/form}" method="get">
-    <button type="submit">Zurück</button>
-</form>
-<a href="logout">Logout</a>
 </body>
 </html>

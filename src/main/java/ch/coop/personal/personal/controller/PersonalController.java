@@ -26,7 +26,7 @@ public class PersonalController {
         return "userForm";
     }
 
-    @RequestMapping("/create")
+    @PostMapping("/create")
     public String createPerson(@ModelAttribute Personal personal, Model model) {
         personalServiceImpl.insertPersonal(personal);
         model.addAttribute("allPersonals", personalServiceImpl.getPersonals());

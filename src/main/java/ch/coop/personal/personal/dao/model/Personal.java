@@ -3,13 +3,14 @@ package ch.coop.personal.personal.dao.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "test")
+@Table(name = "personal_info")
 public class Personal {
 
 	@Id
@@ -32,6 +33,6 @@ public class Personal {
 	private String nationality;
 
 	@Column(name = "date", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDateTime date;
-
 }
