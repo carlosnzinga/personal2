@@ -10,11 +10,13 @@
 	<h1>Profil</h1>
 </header>
 <div>
-	<p>Benutzername: <span th:text="${user.username}"></span></p>
-	<p>Name: <span th:text="${user.name}"></span></p>
+	<p><strong>Benutzername:</strong> <span th:text="${user.username}"></span></p>
+	<p><strong>Bitte füllen Sie Ihre Informationen aus:</strong> Klicken Sie hier, um das <a href="/personal/form">Benutzerformular</a> auszufüllen. </p>
+	<p>Wenn Ihre Informationen bereits gespeichert wurden, können Sie sie unter <a href="/personal/info">Benutzerliste</a> anzeigen und bearbeiten, falls gewünscht.</p>
+
+	<p></p>
 </div>
-<a th:href="@{/personal/form}">Benutzer Formular ausfüllen</a>
-<a th:href="@{/personal/info}">Benutzer Liste</a>
+
 <a th:href="@{/logout}">Logout</a>
 </body>
 </html>
