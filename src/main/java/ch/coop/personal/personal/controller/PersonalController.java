@@ -56,6 +56,12 @@ public class PersonalController {
         }
     }
 
+    @PostMapping("/update")
+    public String saveUpdatedPersonal(@ModelAttribute Personal personal) {
+        personalServiceImpl.updatePersonal(personal);
+        return "redirect:/personal/info";
+    }
+
     @RequestMapping("/search")
     public String searchPersonal(@RequestParam("query") String query, Model model) {
         List<Personal> searchResults = personalServiceImpl.searchPersonal(query);

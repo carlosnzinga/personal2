@@ -29,6 +29,9 @@
         <td th:text="${personal.address}"></td>
         <td th:text="${personal.nationality}"></td>
         <td th:text="${personal.date}"></td>
+        <td>
+            <a th:href="@{/personal/update(id=${personal.id})}">Bearbeiten</a>
+        </td>
     </tr>
     </tbody>
 </table>

@@ -7,56 +7,41 @@
 </head>
 <body>
 <header>
-  <h1>Willkommen auf unserer Plattform</h1>
-  <a href="/" class="logo-coop">
-    <!-- SVG Inhalt -->
-  </a>
-  <nav>
-    <ul>
-      <li><a th:href="@{/userInfo}">Benutzerinformationen</a></li>
-    </ul>
-  </nav>
+  <h1>Benutzerinformationen bearbeiten</h1>
 </header>
-<h1>Benutzerinformationen bearbeiten</h1>
-<form th:action="@{/update}" th:object="${personal}" method="post">
+<form th:action="@{/personal/update}" th:object="${personal}" method="post">
   <input type="hidden" th:field="*{id}" />
   <table>
     <tr>
       <td>ID:</td>
       <td th:text="${personal.id}"></td>
-      <td><button type="submit">Aktualisieren</button></td>
     </tr>
     <tr>
       <td>Name:</td>
-      <td th:text="${personal.name}"></td>
       <td><input type="text" th:field="*{name}" /></td>
     </tr>
     <tr>
       <td>Alter:</td>
-      <td th:text="${personal.age}"></td>
       <td><input type="text" th:field="*{age}" /></td>
     </tr>
     <tr>
       <td>Geschlecht:</td>
-      <td th:text="${personal.gender}"></td>
       <td><input type="text" th:field="*{gender}" /></td>
     </tr>
     <tr>
       <td>Adresse:</td>
-      <td th:text="${personal.address}"></td>
       <td><input type="text" th:field="*{address}" /></td>
     </tr>
     <tr>
       <td>Nationalität:</td>
-      <td th:text="${personal.nationality}"></td>
       <td><input type="text" th:field="*{nationality}" /></td>
     </tr>
     <tr>
       <td>Datum:</td>
-      <td th:text="${personal.date}"></td>
       <td><input type="datetime-local" th:field="*{date}" /></td>
     </tr>
   </table>
+  <button type="submit">Speichern</button>
 </form>
 </body>
 </html>

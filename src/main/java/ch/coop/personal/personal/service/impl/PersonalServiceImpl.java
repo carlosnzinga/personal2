@@ -34,4 +34,9 @@ public class PersonalServiceImpl {
     public List<Personal> searchPersonal(String query) {
         return personalRepository.findByNameContaining(query);
     }
+
+    public void updatePersonal(Personal personal) {
+        // Hier kann zusätzliche Logik hinzugefügt werden, falls erforderlich.
+        personalRepository.save(personal);
+    }
 }
