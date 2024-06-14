@@ -1,5 +1,6 @@
 package ch.coop.personal.personal.security;
 
+
 import ch.coop.personal.personal.service.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,13 +31,15 @@ public class SecurityConfig {
 		http
 				.authorizeRequests(authorizeRequests ->
 						authorizeRequests
-								.requestMatchers("/user/register", "/login","/css/**","/personal/form", "/personal/create", "/personal/info", "/personal/update", "/personal/delete").permitAll()
+								.requestMatchers("/user/register", "/login","/css/**","/personal/form", "/personal/create", "/personal/info", "/personal/update", "/personal/delete", "/user/profile").permitAll()
+								.requestMatchers("/user/profile").hasRole("USER")
+								.requestMatchers("/admin/**").hasRole("ADMIN")
 								.anyRequest().authenticated()
 				)
 				.formLogin(formLogin ->
 						formLogin
-								.loginPage("/")
-								.defaultSuccessUrl("/personal/info", true)
+								.loginPage("/login")
+								.defaultSuccessUrl("/user/profile", true)
 								.failureUrl("/login?error=true")
 								.permitAll()
 				)
