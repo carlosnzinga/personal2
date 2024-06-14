@@ -31,6 +31,6 @@ public class PersonalInfo {
 	@Column(name = "nationality", nullable = false)
 	private String nationality;
 
-	@Column(name = "created_at", nullable = false)
-	private LocalDateTime createdAt;
+	@Column(name = "date", nullable = false)
+	private LocalDateTime date;
 }

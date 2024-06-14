@@ -22,4 +22,5 @@ public interface PersonalService {
     public void updatePersonal(Personal personal);
 
 
+
 }

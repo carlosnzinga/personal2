@@ -1,4 +1,82 @@
-/* Stil für den Haupttitel */
+/* Basic reset for padding and margins */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 400px;
+}
+
+div {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #0056b3;
+}
+
+button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #004494;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    form {
+        padding: 1.5rem;
+    }
+}
+
+/* Optional: Style for the header and logout link if needed */
 header {
     background-color: #FF8C00;
     color: #FFFFFF;
@@ -7,25 +85,6 @@ header {
     position: relative;
 }
 
-h1 {
-    color: white;
-    font-size: 24px;
-    text-align: center;
-    margin: 0 auto;
-}
-
-/* Allgemeine Ausrichtung */
-body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* CSS-Stile für den Logout-Link */
 #out {
     display: block;
     width: 10%;
@@ -41,50 +100,6 @@ body {
     right: 10px;
 }
 
-/* Stil für das Formular */
-form {
-    width: 25%;
-    margin: 0 auto;
-    padding: 32px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-}
-
-/* Stil für das Beschriftungsfeld */
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-/* Stil für die Eingabefelder */
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-/* Stil für den Absendebutton */
-button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #FF8C00;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: #90EE90;
-}
-
 .logo-coop {
     text-align: center;
     background-color: #fff;
@@ -92,11 +107,9 @@ button[type="submit"]:hover {
     top: 10px;
     right: 10px;
     padding: 18px 24px 14px;
-    -webkit-transition: padding 200ms ease-in-out;
     transition: padding 200ms ease-in-out;
 }
 
-/* Navigationsstil */
 nav ul {
     list-style: none;
     padding: 0;
@@ -116,7 +129,6 @@ nav ul li a {
     font-size: 20px;
 }
 
-/* Link-Stile */
 a {
     color: #007bff;
 }

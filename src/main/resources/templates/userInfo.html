@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>User Informationen</title>
-    <link rel="stylesheet" href="css/createPersonInfo.css">
+    <title>Benutzerinformationen bearbeiten</title>
+    <link rel="stylesheet" href="css/userInfo.css">
+    <meta charset="utf-8">
 </head>
 <body>
-<h1>User Informationen</h1>
+
+<h1>Benutzerinformationen bearbeiten</h1>
 <table>
+    <thead>
     <tr>
-        <th><strong>Name</strong></th>
-        <th><strong>Alter</strong></th>
-        <th><strong>Geschlecht</strong></th>
-        <th><strong>Adresse</strong></th>
-        <th><strong>Nationalität</strong></th>
-        <th><strong>Datum</strong></th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Alter</th>
+        <th>Geschlecht</th>
+        <th>Adresse</th>
+        <th>Nationalität</th>
+        <th>Datum</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="personal : ${allPersonals}">
+        <td th:text="${personal.id}"></td>
         <td th:text="${personal.name}"></td>
         <td th:text="${personal.age}"></td>
         <td th:text="${personal.gender}"></td>
         <td th:text="${personal.address}"></td>
         <td th:text="${personal.nationality}"></td>
         <td th:text="${personal.date}"></td>
+        <td>
+            <a th:href="@{/personal/update(id=${personal.id})}">Updaten</a>
+            <a th:href="@{/personal/delete(id=${personal.id})}" onclick="return confirm('Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?');">Löschen</a>
+        </td>
     </tr>
+    </tbody>
 </table>
-<br><br>
-<form action="/userForm" method="get">
-    <button id="submit" type="submit">Zurück</button>
-</form>
-<form th:action="@{/deletePerson}" method="post">
-    <input type="hidden" />
-    <button type="submit" class="delete-button">Person löschen</button>
-</form>
-<a href="logout">Logout</a>
 </body>
 </html>

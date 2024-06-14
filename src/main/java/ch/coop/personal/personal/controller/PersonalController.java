@@ -26,7 +26,7 @@ public class PersonalController {
         return "userForm";
     }
 
-    @RequestMapping("/create")
+    @PostMapping("/create")
     public String createPerson(@ModelAttribute Personal personal, Model model) {
         personalServiceImpl.insertPersonal(personal);
         model.addAttribute("allPersonals", personalServiceImpl.getPersonals());
@@ -54,6 +54,12 @@ public class PersonalController {
         } else {
             return "redirect:/personal/info";
         }
+    }
+
+    @PostMapping("/update")
+    public String saveUpdatedPersonal(@ModelAttribute Personal personal) {
+        personalServiceImpl.updatePersonal(personal);
+        return "redirect:/personal/info";
     }
 
     @RequestMapping("/search")
