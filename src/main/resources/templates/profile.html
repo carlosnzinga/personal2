@@ -3,7 +3,38 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Profil</title>
-	<link rel="stylesheet" href="css/profile.css">
+	<style>
+		body {
+          font-family: Arial, sans-serif;
+          background-color: #f5f5f5;
+          margin: 0;
+          padding: 0;
+        }
+
+        header {
+          background-color: #333;
+          color: white;
+          text-align: center;
+          padding: 10px 0;
+        }
+
+        header h1 {
+          margin: 0;
+        }
+
+        div {
+          padding: 20px;
+        }
+
+        a {
+          color: #007bff;
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: underline;
+        }
+	</style>
 </head>
 <body>
 <header>
@@ -13,10 +44,7 @@
 	<p><strong>Benutzername:</strong> <span th:text="${user.username}"></span></p>
 	<p><strong>Bitte füllen Sie Ihre Informationen aus:</strong> Klicken Sie hier, um das <a href="/personal/form">Benutzerformular</a> auszufüllen. </p>
 	<p>Wenn Ihre Informationen bereits gespeichert wurden, können Sie sie unter <a href="/personal/info">Benutzerliste</a> anzeigen und bearbeiten, falls gewünscht.</p>
-
-	<p></p>
 </div>
-
 <a th:href="@{/logout}">Logout</a>
 </body>
 </html>
