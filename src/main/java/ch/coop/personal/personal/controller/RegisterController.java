@@ -32,7 +32,7 @@ public class RegisterController {
 	}
 
 	@PostMapping("/register")
-	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("name") String name) {
+	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("name") String name, @RequestParam("role") String role) {
 		if (!isValidPassword(password)) {
 			throw new ValidationException("Passwort muss mindestens 8 Zeichen lang sein und Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten.");
 		}
@@ -41,6 +41,7 @@ public class RegisterController {
 		user.setUsername(username);
 		user.setPassword(passwordEncoder.encode(password));
 		user.setName(name);
+		user.setRole(role);
 		userRepository.save(user);
 		return "redirect:/login";
 	}

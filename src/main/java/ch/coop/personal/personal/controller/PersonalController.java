@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -39,12 +40,14 @@ public class PersonalController {
         return "userInfo";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/delete")
     public String deletePersonal(@RequestParam("id") Long id) {
         personalServiceImpl.deletePersonal(id);
         return "redirect:/personal/info";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/update")
     public String updatePersonal(@RequestParam("id") Long id, Model model) {
         Personal personalToUpdate = personalServiceImpl.getPersonalById(id).orElse(null);
@@ -56,6 +59,7 @@ public class PersonalController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")
     public String saveUpdatedPersonal(@ModelAttribute Personal personal) {
         personalServiceImpl.updatePersonal(personal);

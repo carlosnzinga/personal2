@@ -32,8 +32,9 @@ public class SecurityConfig {
 				.authorizeRequests(authorizeRequests ->
 						authorizeRequests
 								.requestMatchers("/user/register", "/login","css/styles.css","/personal/form", "/personal/create", "/personal/info", "/personal/update", "/personal/delete", "/user/profile").permitAll()
-								.requestMatchers("/user/profile").hasRole("USER")
-								.requestMatchers("/admin/**").hasRole("ADMIN")
+								.requestMatchers("/user/profile").hasAnyRole("USER", "ADMIN")
+								.requestMatchers( "/personal/update", "/personal/delete").hasRole("ADMIN")
+								.requestMatchers("/personal/**").hasAnyRole("USER", "ADMIN")
 								.anyRequest().authenticated()
 				)
 				.formLogin(formLogin ->
