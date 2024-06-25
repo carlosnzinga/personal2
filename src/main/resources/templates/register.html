@@ -4,67 +4,119 @@
   <meta charset="UTF-8">
   <title>Register</title>
   <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="password"], select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    input.invalid {
+      border-color: red;
+      background-color: #ffe6e6;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+  <script>
+    function escapeHtml(unsafe) {
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function validateInput() {
+        const usernameField = document.getElementById('username');
+        const passwordField = document.getElementById('password');
+
+        const username = escapeHtml(usernameField.value);
+        const password = escapeHtml(passwordField.value);
+
+        let isValid = true;
+
+        if (username.trim() === '') {
+            usernameField.classList.add('invalid');
+            isValid = false;
+        } else {
+            usernameField.classList.remove('invalid');
         }
-        h1 {
-            text-align: center;
-            color: #333;
+
+        const passwordValid = password.length >= 8 &&
+                              /[A-Z]/.test(password) &&
+                              /[a-z]/.test(password) &&
+                              /\d/.test(password) &&
+                              /[!@#$%^&*()]/.test(password);
+
+        if (!passwordValid) {
+            passwordField.classList.add('invalid');
+            isValid = false;
+        } else {
+            passwordField.classList.remove('invalid');
         }
-        form {
-            background-color: #fff;
-            padding: 20px;
-            margin: 20px auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            max-width: 500px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        return isValid;
+    }
+
+    function validateForm(event) {
+        if (!validateInput()) {
+            event.preventDefault();
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="password"], select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-    </style>
+    }
+  </script>
 </head>
 <body>
 <h1>Register</h1>
-<form th:action="@{/user/register}" method="post">
+<form th:action="@{/user/register}" method="post" onsubmit="validateForm(event)">
   <div>
     <label>Username:</label>
-    <input type="text" name="username" />
+    <input type="text" id="username" name="username" required/>
   </div>
   <div>
     <label>Password:</label>
-    <input type="password" name="password" />
+    <input type="password" id="password" name="password" oninput="validateInput()" required/>
   </div>
   <div>
     <label>Name:</label>
-    <input type="text" name="name" />
+    <input type="text" name="name" required/>
   </div>
   <div>
     <label>Role:</label>

@@ -6,6 +6,7 @@ import ch.coop.personal.personal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +33,10 @@ public class RegisterController {
 	}
 
 	@PostMapping("/register")
-	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("name") String name, @RequestParam("role") String role) {
+	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("name") String name, @RequestParam("role") String role, Model model) {
 		if (!isValidPassword(password)) {
-			throw new ValidationException("Passwort muss mindestens 8 Zeichen lang sein und Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten.");
+			model.addAttribute("error", "Passwort muss mindestens 8 Zeichen lang sein und Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten.");
+			return "register";
 		}
 
 		User user = new User();
