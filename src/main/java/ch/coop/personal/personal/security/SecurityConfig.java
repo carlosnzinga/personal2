@@ -47,6 +47,11 @@ public class SecurityConfig {
 				.logout(logout ->
 						logout
 								.permitAll()
+				)
+				.sessionManagement(sessionManagement ->
+						sessionManagement
+								.maximumSessions(1)
+								.expiredUrl("/login?expired=true")
 				);
 		return http.build();
 	}

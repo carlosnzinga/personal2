@@ -2,7 +2,7 @@
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Register</title>
+  <title>Registrierung</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,10 +10,12 @@
       margin: 0;
       padding: 0;
     }
-    h1 {
+
+    h2 {
       text-align: center;
       color: #333;
     }
+
     form {
       background-color: #fff;
       padding: 20px;
@@ -21,113 +23,66 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       max-width: 500px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
     label {
       display: block;
       margin-bottom: 5px;
-      font-weight: bold;
     }
-    input[type="text"], input[type="password"], select {
+
+    input[type="text"], input[type="password"] {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 3px;
     }
-    input.invalid {
-      border-color: red;
-      background-color: #ffe6e6;
-    }
-    button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background-color: #28a745;
+
+    input[type="submit"] {
+      background-color: #4CAF50;
       color: white;
+      padding: 10px 15px;
       border: none;
       border-radius: 3px;
       cursor: pointer;
-      font-size: 16px;
     }
-    button:hover {
-      background-color: #218838;
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
     }
   </style>
-  <script>
-    function escapeHtml(unsafe) {
-        return unsafe
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-    function validateInput() {
-        const usernameField = document.getElementById('username');
-        const passwordField = document.getElementById('password');
-
-        const username = escapeHtml(usernameField.value);
-        const password = escapeHtml(passwordField.value);
-
-        let isValid = true;
-
-        if (username.trim() === '') {
-            usernameField.classList.add('invalid');
-            isValid = false;
-        } else {
-            usernameField.classList.remove('invalid');
-        }
-
-        const passwordValid = password.length >= 8 &&
-                              /[A-Z]/.test(password) &&
-                              /[a-z]/.test(password) &&
-                              /\d/.test(password) &&
-                              /[!@#$%^&*()]/.test(password);
-
-        if (!passwordValid) {
-            passwordField.classList.add('invalid');
-            isValid = false;
-        } else {
-            passwordField.classList.remove('invalid');
-        }
-
-        return isValid;
-    }
-
-    function validateForm(event) {
-        if (!validateInput()) {
-            event.preventDefault();
-        }
-    }
-  </script>
 </head>
 <body>
-<h1>Register</h1>
-<form th:action="@{/user/register}" method="post" onsubmit="validateForm(event)">
+<h2>Registrierung</h2>
+<form th:action="@{/user/register}" method="post">
   <div>
-    <label>Username:</label>
-    <input type="text" id="username" name="username" required/>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
   </div>
   <div>
-    <label>Password:</label>
-    <input type="password" id="password" name="password" oninput="validateInput()" required/>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
   </div>
   <div>
-    <label>Name:</label>
-    <input type="text" name="name" required/>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
   </div>
   <div>
-    <label>Role:</label>
-    <select name="role">
+    <label for="role">Role:</label>
+    <select id="role" name="role" required>
       <option value="USER">User</option>
       <option value="ADMIN">Admin</option>
     </select>
   </div>
   <div>
-    <button type="submit">Register</button>
+    <input type="submit" value="Register">
   </div>
+  <div th:if="${error}" class="error" th:text="${error}"></div>
 </form>
 </body>
 </html>

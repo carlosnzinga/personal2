@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Validated
@@ -28,7 +29,7 @@ public class PersonalController {
     }
 
     @PostMapping("/create")
-    public String createPerson(@ModelAttribute Personal personal, Model model) {
+    public String createPerson(@Valid @ModelAttribute Personal personal, Model model) {
         personalServiceImpl.insertPersonal(personal);
         model.addAttribute("allPersonals", personalServiceImpl.getPersonals());
         return "userInfo";
@@ -61,7 +62,7 @@ public class PersonalController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")
-    public String saveUpdatedPersonal(@ModelAttribute Personal personal) {
+    public String saveUpdatedPersonal(@Valid @ModelAttribute Personal personal) {
         personalServiceImpl.updatePersonal(personal);
         return "redirect:/personal/info";
     }
